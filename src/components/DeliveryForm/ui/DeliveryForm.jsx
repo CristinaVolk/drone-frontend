@@ -1,6 +1,9 @@
 import React from "react";
 
 import {useDeliveryForm} from "../model/hooks/useDeliveryForm/useDeliveryForm";
+import {Input} from "../../Input/ui/Input";
+import './DeliveryForm.css';
+import {Select} from "../../Select/ui/Select";
 
 
 export function DeliveryForm() {
@@ -13,116 +16,102 @@ export function DeliveryForm() {
         error
     } = useDeliveryForm();
 
-
     return (
-        <div style={{ maxWidth: "500px", marginTop: "20px" }}>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Date
-                    <input
-                        type="date"
-                        name="date"
-                        value={form.date}
-                        onChange={(event)=> handleChange(event)}
-                    />
-                </label>
+        <div className="delivery-form-container">
+            <form
+                className="delivery-form"
+                onSubmit={handleSubmit}
+            >
+                <Input
+                    label='Date'
+                    type='date'
+                    value={form.date}
+                    required={true}
+                    onInputChange={(event)=> handleChange(event)}
+                />
+                <Input
+                    label='Time'
+                    type='time'
+                    value={form.time}
+                    required={true}
+                    onInputChange={(event)=> handleChange(event)}
+                />
 
-                <label>
-                    Time
-                    <input
-                        type="time"
-                        name="time"
-                        value={form.time}
-                        onChange={(event)=> handleChange(event)}
-                    />
-                </label>
+                <h3 className="delivery-form-input-title">Requirements</h3>
+                <Input
+                    min={1}
+                    type='number'
+                    name='capacity'
+                    label='Capacity'
+                    value={form.capacity}
+                    required={true}
+                    onInputChange={(event)=> handleChange(event)}
+                />
 
-                <h3>Requirements</h3>
+                <Select
+                    label='Cooling required?'
+                    name="cooling"
+                    value={form.cooling}
+                    onSelectionChange={(event)=> handleChange(event)}
+                    options={[
+                        {label: "False", value: "false"},
+                        {label: "True", value: "true"}
+                    ]}
+                />
+                <Select
+                    label='Heating required?'
+                    name="heating"
+                    value={form.heating}
+                    onSelectionChange={(event)=> handleChange(event)}
+                    options={[
+                        {label: "False", value: "false"},
+                        {label: "True", value: "true"}
+                    ]}
+                />
+                <Input
+                    min={1}
+                    type='number'
+                    name='maxCost'
+                    label='Max Cost'
+                    value={form.maxCost}
+                    required={true}
+                    onInputChange={(event)=> handleChange(event)}
+                />
 
-                <label>
-                    Capacity
-                    <input
-                        type="number"
-                        name="capacity"
-                        min="1"
-                        value={form.capacity}
-                        onChange={(event)=> handleChange(event)}
-                        required
-                    />
-                </label>
+                <h3 className="delivery-form-input-title">Delivery Location</h3>
+                <Input
+                    type='number'
+                    name='lat'
+                    step="0.0001"
+                    label='Latitude'
+                    value={form.lat}
+                    required
+                    onInputChange={(event)=> handleChange(event)}
+                />
+                <Input
+                    type='number'
+                    name="lng"
+                    step="0.0001"
+                    label='Longitude'
+                    value={form.lng}
+                    required={true}
+                    onInputChange={(event)=> handleChange(event)}
+                />
 
-                <label>
-                    Cooling required?
-                    <select
-                        name="cooling"
-                        value={form.cooling}
-                        onChange={(event)=> handleChange(event)}
-                    >
-                        <option value="false">False</option>
-                        <option value="true">True</option>
-                    </select>
-                </label>
-
-                <label>
-                    Heating required?
-                    <select
-                        name="heating"
-                        value={form.heating}
-                        onChange={(event)=> handleChange(event)}
-                    >
-                        <option value="false">False</option>
-                        <option value="true">True</option>
-                    </select>
-                </label>
-
-                <label>
-                    Max Cost
-                    <input
-                        type="number"
-                        name="maxCost"
-                        min="1"
-                        value={form.maxCost}
-                        required
-                        onChange={(event)=> handleChange(event)}
-                    />
-                </label>
-
-                <h3>Delivery Location</h3>
-
-                <label>
-                    Latitude
-                    <input
-                        type="number"
-                        name="lat"
-                        step="0.0001"
-                        value={form.lat}
-                        required
-                        onChange={(event)=> handleChange(event)}
-                    />
-                </label>
-
-                <label>
-                    Longitude
-                    <input
-                        type="number"
-                        name="lng"
-                        step="0.0001"
-                        value={form.lng}
-                        required
-                        onChange={(event)=> handleChange(event)}
-                    />
-                </label>
-
-                <button type="submit" disabled={isSubmitting}>
+                <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="delivery-form-button"
+                >
                     {isSubmitting ? "Submitting..." : "Create Delivery"}
                 </button>
             </form>
 
             {requestApproval && (
-                <p style={{ marginTop: "10px", whiteSpace: "pre-wrap" }}>{requestApproval}</p>
+                <p className="delivery-form-text">{requestApproval}</p>
             )}
             {error && (
-                <p style={{ marginTop: "10px", whiteSpace: "pre-wrap", color: "red" }}>{error}</p>
+                <p className="delivery-form-text delivery-form-error">{error}</p>
             )}
         </div>
     );

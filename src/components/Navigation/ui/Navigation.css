@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 20px;
     background: rgb(46, 74, 124, 0.1);
 
     a {

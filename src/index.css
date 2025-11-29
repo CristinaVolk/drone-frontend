@@ -9,13 +9,6 @@ h1 {
   color: #2e4a7d;
 }
 
-form {
-  background: #ffffff;
-  padding: 0 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
 label {
   display: block;
   margin-bottom: 10px;
@@ -31,16 +24,4 @@ button {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-}
-
-button {
-  background-color: #2e6fdf;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover {
-  background-color: #1c4ea6;
 }
