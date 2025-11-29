@@ -1,0 +1,17 @@
+.navigation {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgb(46, 74, 124, 0.1);
+
+    a {
+        text-decoration: none;
+        color: #2e4a7d;
+        font-size: 24px;
+    }
+
+    a:hover {
+        font-style: italic;
+    }
+}
