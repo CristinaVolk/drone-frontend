@@ -1,0 +1,19 @@
+.wind-speed-container {
+    max-width: 300px;
+    color: #2e4a7d;
+}
+
+.wind-speed-result {
+    margin: 16px 0;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.wind-speed-value {
+    font-weight: 600;
+}
+
+.wind-speed-error {
+    color: darkred;
+    margin-top: 12px;
+}

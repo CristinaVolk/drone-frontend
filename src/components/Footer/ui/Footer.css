@@ -1,3 +1,16 @@
 footer {
     height: 100px;
 }
+
+/* FOOTER */
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background-color: #090157;
+    color: white;
+    font-size: 14px;
+    border-radius: 10px 10px 0 0;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}

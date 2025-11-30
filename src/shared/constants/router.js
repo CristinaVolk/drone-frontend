@@ -5,7 +5,7 @@ export const routesNames = {
 }
 
 export const appRoutes = {
-    [routesNames.HOME]: '/',
+    [routesNames.HOME]: '/home',
     [routesNames.CREATE_ORDER]: 'create-order',
-    [routesNames.TRACK_ORDER]: 'track-order'
+    [routesNames.TRACK_ORDER]: 'track-order/:id'
 }

@@ -1,0 +1,62 @@
+.map-square-wrapper {
+    width: 700px;
+    height: 700px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.map-fill {
+    height: 100%;
+    width: 100%;
+}
+
+.drone-wrapper {
+    width: 32px;
+    height: 32px;
+}
+
+.drone {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 35%, #2a7, #094);
+    box-shadow: 0 0 6px rgba(0,0,0,0.35);
+    transform-origin: 50% 50%;
+    position: relative;
+}
+
+.drone::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid #2a7;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35));
+}
+
+
+.status-pill {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+.status-preparing {
+    background: #f0ad4e;
+}
+.status-dispatched {
+    background: #0275d8;
+}
+.status-delivered {
+    background: #5cb85c;
+}

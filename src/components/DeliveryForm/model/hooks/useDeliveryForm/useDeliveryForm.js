@@ -1,6 +1,7 @@
 import {useState} from "react";
 
 import {DELIVERIES_ENDPOINT} from "../../../../../shared/constants/endpoints";
+import {createPayload} from "../../helpers/delivery";
 
 export const useDeliveryForm = () => {
     const [form, setForm] = useState({
@@ -13,10 +14,9 @@ export const useDeliveryForm = () => {
         lat: "",
         lng: "",
     });
-
-    const [requestApproval, setRequestApproval] = useState("");
     const [error, setError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [deliverySubmittedId, setDeliverySubmittedId] = useState(1);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,44 +24,29 @@ export const useDeliveryForm = () => {
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setRequestApproval("");
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
         setIsSubmitting(true);
 
-        const payload = {
-            date: form.date,
-            time: form.time,
-            requirements: {
-                capacity: Number(form.capacity),
-                cooling: form.cooling === "true",
-                heating: form.heating === "true",
-                maxCost: Number(form.maxCost),
-            },
-            delivery: {
-                lat: Number(form.lat),
-                lng: Number(form.lng),
-            },
-        };
+        const payload = createPayload(form);
 
         try {
             const response = await fetch(DELIVERIES_ENDPOINT, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(payload),
             });
 
             if (!response.ok) {
+                alert("Error creating delivery");
                 setError(`Error: ${response.status} ${response.statusText}`);
             } else {
-                const data = await response.json().catch(() => null);
+                const orderPlacedData = await response.json();
 
-                setRequestApproval("Order accepted! " + (data ? JSON.stringify(data) : ""));
+                setDeliverySubmittedId(orderPlacedData.deliverId);
             }
         } catch (err) {
-            console.error(err);
             setError("Failed to connect to backend.");
         } finally {
             setIsSubmitting(false);
@@ -72,7 +57,7 @@ export const useDeliveryForm = () => {
         form,
         error,
         isSubmitting,
-        requestApproval,
+        deliverySubmittedId,
         handleChange,
         handleSubmit,
     }

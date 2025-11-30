@@ -8,7 +8,6 @@ export const Navigation = () => {
         <nav className="navigation">
             <Link to={appRoutes[routesNames.HOME]}>{routesNames.HOME}</Link>
             <Link to={appRoutes[routesNames.CREATE_ORDER]}>{routesNames.CREATE_ORDER}</Link>
-            <Link to={appRoutes[routesNames.TRACK_ORDER]}>{routesNames.TRACK_ORDER}</Link>
         </nav>
     )
 }

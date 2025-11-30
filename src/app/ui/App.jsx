@@ -8,13 +8,13 @@ import './App.css';
 
 export function App() {
   return (
-      <>
+      <div className="wrapper">
           <Navigation />
-              <main className="main-container">
-                  <h1>Medical Drone Delivery</h1>
-                  <Outlet />
-              </main>
+          <main className="main-container">
+              <h1>Medical Drone Delivery</h1>
+              <Outlet />
+          </main>
           <Footer />
-      </>
+      </div>
   );
 }
